@@ -8,31 +8,26 @@ const Chatbot = () => {
 
     const sendMessage = async () => {
         if (!input.trim()) return;
-
+    
         const newMessages = [...messages, { role: "user", content: input }];
         setMessages(newMessages);
         setInput("");
         setLoading(true);
-
+    
         try {
-            const response = await axios.post(
-                "/api/chatbot", // Change this to your backend endpoint
-                {
-                    messages: newMessages,
-                },
-                {
-                    headers: {
-                        "Content-Type": "application/json",
-                    },
-                }
-            );
-
-            const botReply = response.data.botReply;
+            const response = await axios.post("http://localhost:3001/api/chatbot", {
+                messages: newMessages, // ✅ Make sure backend expects this
+            }, {
+                headers: { "Content-Type": "application/json" },
+            });
+    
+            const botReply = response.data.botReply; // ✅ Correctly parse backend response
             setMessages([...newMessages, botReply]);
+            
         } catch (error) {
             console.error("Error fetching response:", error);
         }
-
+    
         setLoading(false);
     };
 
@@ -58,7 +53,7 @@ const Chatbot = () => {
             >
                 {messages.map((msg, index) => (
                     <div
-                    className="chat-messages"
+                        className="chat-messages"
                         key={index}
                         style={{
                             textAlign: msg.role === "user" ? "right" : "left",
