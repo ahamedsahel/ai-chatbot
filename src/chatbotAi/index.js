@@ -40,7 +40,7 @@ const Chatbot = () => {
     return (
         <div className="chat-container">
             <div className="chat-header">
-                <h4>Workplus Chatbot</h4>
+                <h4>Open AI Chatbot</h4>
             </div>
             <div className="chat-messages"
                 style={{
