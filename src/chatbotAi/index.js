@@ -66,8 +66,6 @@ const Chatbot = () => {
                 ))}
                 {loading && <div>Bot is typing...</div>}
             </div>
-
-
             <div className="chat-input">
                 <input
                     type="text"
