@@ -14,7 +14,6 @@ const Chatbot = () => {
         setInput("");
         setLoading(true);
         
-    
         try {
             const response = await axios.post("http://localhost:3001/api/chatbot", {
                 messages: newMessages, // ✅ Make sure backend expects this
